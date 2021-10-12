@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block head_title %} Home {% endblock head_title %}
+
+
+{% block content %}
+
+    {% if query %}
+
+        <h1>Hello World</h1>
+
+    {% else %}
+
+    
+    <div class="container p-3 mb-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6">
+                <form method="GET">
+                    <div class="form-group">
+                        <input class="form-control mr-sm-2 mb-2" type="search" placeholder="Search Recipe" aria-label="search" name="name">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            {% for recipe in recipes %}
+                <div class="col d-flex justify-content-around mb-5">
+                    <div class="card shadow-sm" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ recipe.cover_img.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ recipe.name|capfirst }}</h5>
+                            <p class="card-text">{{ recipe.description|safe|slice:":100" }}</p>
+                            <a href="{{ recipe.get_absolute_url }}" class="btn btn-success">Read More</a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+            
+        </div>
+
+    </div>
+
+    {% endif %}
+
+{% endblock content %}

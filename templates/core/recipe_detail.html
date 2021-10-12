@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head_title %} {{ recipe.name }} {% endblock head_title %}
+
+{% block content %}
+
+
+
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-10">
+                
+                <div class="title text-center mb-lg-5 mb-sm-3">
+                    <h1 class="title"><b>{{ recipe.name|upper }}</b></h1>
+                    <p>Created on : {{ recipe.created|date  }}</p>    
+                </div>
+                <img class="card-img-top mt-lg-3 mb-lg-5 mt-sm-3 mb-sm-3" src="{{ recipe.cover_img.url }}" alt="Card image cap">
+                <div class="description mb-lg-5 mb-sm-3">
+                    <h3><b>Description :</b></h3><br>
+                    {{ recipe.description|safe }}
+                </div>
+                
+                <div class="body">
+                    <h2><b>DIRECTIONS :</b></h2><br>
+                    {{ recipe.body|safe }}
+                </div>
+                <a class="btn btn-outline-success" href="{% url 'core:home' %}">HOME</a>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+{% endblock %}
